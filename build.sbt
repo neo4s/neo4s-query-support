@@ -8,7 +8,14 @@ ThisBuild / organizationName := "example"
 lazy val root = (project in file("."))
   .settings(
     name := "neo4s-query-support",
-    libraryDependencies += scalaTest % Test
+    libraryDependencies ++= Seq(
+      logback,
+      neo4jDriver,
+      scalaLogging,
+      scalaMock,
+      scalaTest,
+      shapeless,
+    )
   )
 
 // See https://www.scala-sbt.org/1.x/docs/Using-Sonatype.html for instructions on how to publish to Sonatype.
