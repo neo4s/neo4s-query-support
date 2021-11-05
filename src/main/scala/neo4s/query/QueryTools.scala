@@ -5,7 +5,9 @@ import org.neo4j.driver.util.Resource
 import org.neo4j.driver._
 import org.neo4j.driver.internal.value.NullValue
 
-import scala.jdk.CollectionConverters._
+import scala.collection.immutable.{ Stream => LazyList }
+import scala.collection.JavaConverters._
+
 /**
  * Implicits and types for helping with query parameter specifications, result handling and streaming, and other nice
  * scala wrappers for java-based driver primitives and semantics.
@@ -103,5 +105,6 @@ object QueryTools {
   }
 
   import scala.language.implicitConversions
-  implicit def scalaParam2Java(parameters: Map[String,Any]): java.util.Map[String,AnyRef] = parameters.view.mapValues(_.asInstanceOf[AnyRef]).toMap.asJava
+  implicit def scalaParam2Java(parameters: Map[String,Any]): java.util.Map[String,AnyRef] =
+    parameters.mapValues(_.asInstanceOf[AnyRef]).toMap.asJava
 }

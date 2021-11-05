@@ -1,5 +1,7 @@
 package neo4s.common.syntax
 
+import scala.collection.immutable.{Stream => LazyList}
+
 import scala.collection.mutable.ArrayBuffer
 
 object LazyListSyntax {
@@ -22,11 +24,11 @@ object LazyListSyntax {
         val collection = new ArrayBuffer[V]()
 
         val (headKey,headValue) = splitFn(self.head)
-        headValue.foreach(collection.append)
+        headValue.foreach(collection.append(_))
 
         var rest = self.tail
         while (rest.nonEmpty && headKey == splitFn(rest.head)._1) {
-          splitFn(rest.head)._2.foreach(collection.append)
+          splitFn(rest.head)._2.foreach(collection.append(_))
           rest = rest.tail
         }
         LazyList.cons((headKey,collection.toList),rest.lazyGroupBy(splitFn))

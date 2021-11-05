@@ -1,7 +1,7 @@
 package neo4s.query.auth
 
 import org.neo4j.driver.{AuthToken, AuthTokens}
-import scala.jdk.CollectionConverters._
+import scala.collection.JavaConverters._
 
 object Authenticator extends Enumeration {
 
@@ -20,7 +20,7 @@ object Authenticator extends Enumeration {
   })
 
   val Custom: AuthMethod = AuthMethod("custom", credentials => {
-    val jcreds = credentials.view.mapValues[java.lang.Object](_.asInstanceOf[java.lang.Object]).toMap.asJava
+    val jcreds = credentials.mapValues(_.asInstanceOf[AnyRef]).toMap.asJava
     AuthTokens.custom(credentials("principal"), credentials("credentials"), credentials("realm"), credentials("scheme"), jcreds)
   })
 

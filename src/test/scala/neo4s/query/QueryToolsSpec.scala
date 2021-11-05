@@ -9,7 +9,7 @@ import org.scalatest.wordspec.AnyWordSpec
 import org.scalamock.scalatest.MockFactory
 
 import java.util.UUID
-import scala.jdk.CollectionConverters._
+import scala.collection.JavaConverters._
 
 class QueryToolsSpec  extends AnyWordSpec with MockFactory with should.Matchers {
 
@@ -20,7 +20,7 @@ class QueryToolsSpec  extends AnyWordSpec with MockFactory with should.Matchers 
   }
 
   def mockResultsFor(resultsMap: List[Map[String,Map[String,AnyRef]]]): Result = {
-    val resultsValueMap = resultsMap.map(_.view.mapValues(mockValueFor))
+    val resultsValueMap = resultsMap.map(_.mapValues(mockValueFor))
     val resultsIterator = resultsValueMap.iterator
 
     val resultMock = mock[Result]
