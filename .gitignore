@@ -1,3 +1,5 @@
+sonatype.sbt
+pgp.sbt
 *.iml
 *.class
 *.log
