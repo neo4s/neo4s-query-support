@@ -5,7 +5,7 @@ import org.neo4j.driver.util.Resource
 import org.neo4j.driver._
 import org.neo4j.driver.internal.value.NullValue
 
-import scala.collection.immutable.{ Stream => LazyList }
+import neo4s.query.compat._
 import scala.collection.JavaConverters._
 
 /**

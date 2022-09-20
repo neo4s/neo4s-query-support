@@ -3,6 +3,30 @@
 Implicits and types for helping with query parameter specifications, result handling and streaming, and other nice
 scala wrappers for java-based driver primitives and semantics.
 
+## Motivation
+Neo4j is a natural fit for storing knowledge graphs and representing and querying large scale data based upon its internal
+relationships. Scala is a very nice fit for representing linked information in a scalable and type-safe way. Moving data from 
+Neo4j query results to scala types in a safe and idiomatic way makes the mariage of these two technologies a safer and easier. 
+That is what the [neo4s-query-support](#) project does.
+
+Specifically, this package:
+* Supports lifting Neo4j query results to Scala case classes.
+* Supports memory-efficient streaming of results to scala collections
+
+## Installation
+
+#### SBT
+
+```scala
+libraryDependencies += "io.github.neo4s" %% "neo4s-query-support" % "0.1.2"
+```
+
+## Examples
+
+**NOTE** - [neo4s-query-support](#) supports the lifing of results into the `Stream` class, which is deprecated in scala 2.13. To address
+this we've created type alias for the new `LazyList` class so that, when the target project utilizes scala 2.12, `LazyList` is a `Stream`
+class, otherwise it is `LazyList`
+
 ### Conversion of result set to a self-closing lazy list
 The following example makes use of the neo4s cypher dsl available at (TODO).
 ``` scala 

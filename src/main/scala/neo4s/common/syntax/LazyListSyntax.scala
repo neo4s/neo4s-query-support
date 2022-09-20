@@ -1,6 +1,6 @@
 package neo4s.common.syntax
 
-import scala.collection.immutable.{Stream => LazyList}
+import neo4s.query.compat._
 
 import scala.collection.mutable.ArrayBuffer
 

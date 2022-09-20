@@ -3,7 +3,7 @@ package neo4s.common.syntax
 import org.scalatest.matchers.should
 import org.scalatest.wordspec.AnyWordSpec
 
-import scala.collection.immutable.{Stream => LazyList}
+import neo4s.query.compat._
 
 class LazyListSyntaxSpec extends AnyWordSpec with should.Matchers {
 
